@@ -2,8 +2,9 @@ package com.bastien_corre.cleanjava.product;
 
 import com.bastien_corre.cleanjava.PostgreSQLContainerTests;
 import com.bastien_corre.cleanjava.product.application.ports.ProductRepository;
+import com.bastien_corre.cleanjava.product.domain.model.Product;
 import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
-import com.bastien_corre.cleanjava.product.infra.spring.CreateProductDTO;
+import com.bastien_corre.cleanjava.product.infra.spring.ChangeProductDescriptionDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Import(PostgreSQLContainerTests.class)
-public class CreateProductE2ETests {
+public class ChangeProductDescriptionE2ETests {
     @Autowired
     private MockMvc mockMvc;
 
@@ -31,22 +32,23 @@ public class CreateProductE2ETests {
     private ObjectMapper objectMapper;
 
     @Test
-    void should_create_product() throws Exception {
-        var dto = new CreateProductDTO("Rouget", "Notes intenses de bois", 100);
-        System.out.println(objectMapper.writeValueAsString(dto));
+    void should_change_product_description() throws Exception {
+        var existingProduct = new Product("123", "Rouget", "Notes intenses de bois", 100);
+
+        productRepository.save(existingProduct);
+        var dto = new ChangeProductDescriptionDTO("Notes fruitées, une intensité troublante de fraise des bois");
+
 
        var result = mockMvc
-                .perform(MockMvcRequestBuilders.post("/products")
+                .perform(MockMvcRequestBuilders.patch("/products/" + existingProduct.getId() + "/description")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
-                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-       var idResponse = objectMapper.readValue(result.getResponse().getContentAsString(), IdResponse.class);
-       var product = productRepository.findById(idResponse.getId());
+       var product = productRepository.findById(existingProduct.getId());
 
-        Assertions.assertNotNull(product);
-        Assertions.assertEquals(dto.getProductName(), product.getName());
+        Assertions.assertEquals(dto.getDescription(), product.getDescription());
     }
 
 }

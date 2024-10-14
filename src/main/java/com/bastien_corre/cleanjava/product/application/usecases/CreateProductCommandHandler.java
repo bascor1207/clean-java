@@ -1,17 +1,17 @@
 package com.bastien_corre.cleanjava.product.application.usecases;
 
 import an.awesome.pipelinr.Command;
-import com.bastien_corre.cleanjava.product.application.ports.ProductRepositoryInterface;
+import com.bastien_corre.cleanjava.product.application.ports.ProductRepository;
 import com.bastien_corre.cleanjava.product.domain.model.Product;
 import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
 
 import java.util.UUID;
 
 public class CreateProductCommandHandler implements Command.Handler<CreateProductCommand, IdResponse> {
-    private final ProductRepositoryInterface productRepositoryInterface;
+    private final ProductRepository productRepository;
 
-    public CreateProductCommandHandler(ProductRepositoryInterface productRepositoryInterface) {
-        this.productRepositoryInterface = productRepositoryInterface;
+    public CreateProductCommandHandler(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class CreateProductCommandHandler implements Command.Handler<CreateProduc
                 command.getProductDescription(),
                 command.getProductPrice()
         );
-        this.productRepositoryInterface.save(product);
+        this.productRepository.save(product);
 
         return new IdResponse(product.getId());
     }

@@ -1,12 +1,12 @@
 package com.bastien_corre.cleanjava.product.infra.adapters.in_memory;
 
-import com.bastien_corre.cleanjava.product.application.ports.ProductRepositoryInterface;
+import com.bastien_corre.cleanjava.product.application.ports.ProductRepository;
 import com.bastien_corre.cleanjava.product.domain.model.Product;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryProductRepository implements ProductRepositoryInterface {
+public class InMemoryProductRepository implements ProductRepository {
     private Map<String, Product> products = new HashMap<>();
 
     @Override
