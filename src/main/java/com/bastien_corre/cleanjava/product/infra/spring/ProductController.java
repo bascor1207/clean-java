@@ -3,6 +3,7 @@ package com.bastien_corre.cleanjava.product.infra.spring;
 import an.awesome.pipelinr.Pipeline;
 import com.bastien_corre.cleanjava.product.application.usecases.ChangeProductDescriptionCommand;
 import com.bastien_corre.cleanjava.product.application.usecases.CreateProductCommand;
+import com.bastien_corre.cleanjava.product.application.usecases.DeleteProductCommand;
 import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,12 @@ public class ProductController {
         this.pipeline.send(new ChangeProductDescriptionCommand(id, changeProductDescriptionDTO.getDescription()));
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
+        this.pipeline.send(new DeleteProductCommand(id));
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

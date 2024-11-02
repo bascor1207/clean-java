@@ -17,7 +17,7 @@ public class CreateProductTests {
         var idResponse = useCase.handle(command);
 
         var expectedProduct = new Product("id", "Rouget", "Notes intenses de bois", 100);
-        Product actualProduct = repository.findById(idResponse.getId());
+        Product actualProduct = repository.findById(idResponse.getId()).get();
         Assertions.assertEquals(expectedProduct.getName(), actualProduct.getName());
     }
 

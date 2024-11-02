@@ -3,36 +3,38 @@ package com.bastien_corre.cleanjava.product;
 import com.bastien_corre.cleanjava.core.infra.spring.domain.exceptions.NotFoundException;
 import com.bastien_corre.cleanjava.product.application.usecases.ChangeProductDescriptionCommand;
 import com.bastien_corre.cleanjava.product.application.usecases.ChangeProductDescriptionCommandHandler;
+import com.bastien_corre.cleanjava.product.application.usecases.DeleteProductCommand;
+import com.bastien_corre.cleanjava.product.application.usecases.DeleteProductCommandHandler;
 import com.bastien_corre.cleanjava.product.domain.model.Product;
 import com.bastien_corre.cleanjava.product.infra.adapters.in_memory.InMemoryProductRepository;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class ChangeProductDescriptionTests {
+public class DeleteProductTests {
 
     private final InMemoryProductRepository productRepository = new InMemoryProductRepository();
 
-    private ChangeProductDescriptionCommandHandler createCommandHandler() {
-       return new ChangeProductDescriptionCommandHandler(productRepository);
+    private DeleteProductCommandHandler createCommandHandler() {
+       return new DeleteProductCommandHandler(productRepository);
     }
 
     @Test
-    public void should_change_product_description() {
+    public void should_delete_the_product() {
         var product = new Product("123", "Rouget", "Notes intenses de bois", 100);
         productRepository.save(product);
 
-        var command = new ChangeProductDescriptionCommand(product.getId(), "Notes fruitées, une intensité troublante de fraise des bois");
+        var command = new DeleteProductCommand(product.getId());
         var commandHandler = createCommandHandler();
 
         commandHandler.handle(command);
 
-        Product actualProduct = productRepository.findById(product.getId()).get();
-        Assertions.assertEquals(command.description(), actualProduct.getDescription());
+        var productQuery = productRepository.findById(product.getId());
+        Assertions.assertTrue(productQuery.isEmpty());
     }
 
     @Test
     public void should_throw_not_found_when_product_does_not_exist() {
-        var command = new ChangeProductDescriptionCommand("nonExistentId", "Notes fruitées, une intensité troublante de fraise des bois");
+        var command = new DeleteProductCommand("nonExistentId");
         var commandHandler = createCommandHandler();
 
         var exception = Assertions.assertThrows(NotFoundException.class, () -> commandHandler.handle(command));

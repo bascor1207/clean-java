@@ -38,17 +38,29 @@ public class ChangeProductDescriptionE2ETests {
         productRepository.save(existingProduct);
         var dto = new ChangeProductDescriptionDTO("Notes fruitées, une intensité troublante de fraise des bois");
 
-
-       var result = mockMvc
+        mockMvc
                 .perform(MockMvcRequestBuilders.patch("/products/" + existingProduct.getId() + "/description")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-       var product = productRepository.findById(existingProduct.getId());
+       var product = productRepository.findById(existingProduct.getId()).get();
 
         Assertions.assertEquals(dto.getDescription(), product.getDescription());
     }
 
+    @Test
+    void should_fails_when_product_does_not_exist() throws Exception {
+        var nonExistentProductId = "12345";
+
+        var dto = new ChangeProductDescriptionDTO("Notes fruitées, une intensité troublante de fraise des bois");
+
+        mockMvc
+                .perform(MockMvcRequestBuilders.patch("/products/" + nonExistentProductId + "/description")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto)))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn();
+    }
 }
