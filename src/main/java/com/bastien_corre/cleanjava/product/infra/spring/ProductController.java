@@ -4,7 +4,9 @@ import an.awesome.pipelinr.Pipeline;
 import com.bastien_corre.cleanjava.product.application.usecases.ChangeProductDescriptionCommand;
 import com.bastien_corre.cleanjava.product.application.usecases.CreateProductCommand;
 import com.bastien_corre.cleanjava.product.application.usecases.DeleteProductCommand;
+import com.bastien_corre.cleanjava.product.application.usecases.GetProductByIdCommand;
 import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
+import com.bastien_corre.cleanjava.product.domain.viewmodel.ProductViewModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<IdResponse> createProduct(@RequestBody CreateProductDTO createProductDTO) {
-       var result = this.pipeline.send(new CreateProductCommand(createProductDTO.getProductName(), createProductDTO.getProductDescription(), createProductDTO.getProductPrice()));
+        var result = this.pipeline.send(new CreateProductCommand(createProductDTO.getProductName(), createProductDTO.getProductDescription(), createProductDTO.getProductPrice()));
 
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
@@ -37,5 +39,12 @@ public class ProductController {
         this.pipeline.send(new DeleteProductCommand(id));
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ProductViewModel> getProductById(@PathVariable String id) {
+        var product = this.pipeline.send(new GetProductByIdCommand(id));
+
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 }

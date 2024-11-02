@@ -33,7 +33,6 @@ public class CreateProductE2ETests {
     @Test
     void should_create_product() throws Exception {
         var dto = new CreateProductDTO("Rouget", "Notes intenses de bois", 100);
-        System.out.println(objectMapper.writeValueAsString(dto));
 
        var result = mockMvc
                 .perform(MockMvcRequestBuilders.post("/products")

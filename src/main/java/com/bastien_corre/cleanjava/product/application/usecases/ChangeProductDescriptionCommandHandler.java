@@ -14,15 +14,11 @@ public class ChangeProductDescriptionCommandHandler implements Command.Handler<C
 
     @Override
     public Void handle(ChangeProductDescriptionCommand changeProductDescriptionCommand) throws NotFoundException {
-       var productQuery = this.productRepository.findById(changeProductDescriptionCommand.id());
+       var product = this.productRepository.findById(changeProductDescriptionCommand.id()).orElseThrow(() -> new NotFoundException("Product", changeProductDescriptionCommand.id()));
 
-       if (productQuery.isEmpty()) {
-           throw new NotFoundException("Product", changeProductDescriptionCommand.id());
-       }
-
-       Product product = productQuery.get();
        product.changeDescription(changeProductDescriptionCommand.description());
        productRepository.save(product);
+
        return null;
     }
 }
