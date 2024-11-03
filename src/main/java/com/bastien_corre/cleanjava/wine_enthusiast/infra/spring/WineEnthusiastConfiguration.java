@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WineEnthusiastConfiguration {
-
     @Bean
     public WineEnthusiastRepository wineEnthusiastRepository(EntityManager entityManager) {
         return new SQLWineEnthusiastRepository(entityManager);

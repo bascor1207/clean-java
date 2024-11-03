@@ -1,10 +1,8 @@
 package com.bastien_corre.cleanjava.wine_enthusiast;
 
 import com.bastien_corre.cleanjava.PostgreSQLContainerTests;
-import com.bastien_corre.cleanjava.core.domain.exceptions.IllegalArgumentException;
 import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
 import com.bastien_corre.cleanjava.wine_enthusiast.application.ports.WineEnthusiastRepository;
-import com.bastien_corre.cleanjava.wine_enthusiast.domain.viewmodel.WineEnthusiastViewModel;
 import com.bastien_corre.cleanjava.wine_enthusiast.infra.spring.CreateWineEnthusiastDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

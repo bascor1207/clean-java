@@ -12,6 +12,13 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class ChangeWineEnthusiastAttributesTests {
+    private WineEnthusiast createWineEnthusiast() {
+        return new WineEnthusiast("123", "John", "Doe", List.of("red", "white"));
+    }
+
+    private InMemoryWineEnthusiastRepository createWineEnthusiastRepository() {
+        return new InMemoryWineEnthusiastRepository();
+    }
 
     @Test
     void should_change_all_wine_enthusiast_infos() {
@@ -100,13 +107,5 @@ public class ChangeWineEnthusiastAttributesTests {
         var secondExpectedWineEnthusiast = new WineEnthusiast("123", "John", "Doe", List.of("red", "white"));
 
         Assertions.assertEquals(secondExpectedWineEnthusiast.getPreferredWines(), secondActualWineEnthusiast.getPreferredWines());
-    }
-
-    private WineEnthusiast createWineEnthusiast() {
-        return new WineEnthusiast("123", "John", "Doe", List.of("red", "white"));
-    }
-
-    private InMemoryWineEnthusiastRepository createWineEnthusiastRepository() {
-        return new InMemoryWineEnthusiastRepository();
     }
 }
