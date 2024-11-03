@@ -1,9 +1,8 @@
 package com.bastien_corre.cleanjava.product.application.usecases;
 
 import an.awesome.pipelinr.Command;
-import com.bastien_corre.cleanjava.core.infra.spring.domain.exceptions.NotFoundException;
+import com.bastien_corre.cleanjava.core.domain.exceptions.NotFoundException;
 import com.bastien_corre.cleanjava.product.application.ports.ProductRepository;
-import com.bastien_corre.cleanjava.product.domain.model.Product;
 
 public class ChangeProductDescriptionCommandHandler implements Command.Handler<ChangeProductDescriptionCommand, Void> {
     private final ProductRepository productRepository;

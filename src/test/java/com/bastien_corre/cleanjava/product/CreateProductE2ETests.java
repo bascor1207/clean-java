@@ -14,12 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @Import(PostgreSQLContainerTests.class)
+@Transactional
 public class CreateProductE2ETests {
     @Autowired
     private MockMvc mockMvc;

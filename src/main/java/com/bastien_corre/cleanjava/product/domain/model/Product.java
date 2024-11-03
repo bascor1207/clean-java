@@ -1,16 +1,14 @@
 package com.bastien_corre.cleanjava.product.domain.model;
 
 
+import com.bastien_corre.cleanjava.core.domain.model.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "products")
-public class Product {
-    @Id
-    private String id;
+public class Product extends BaseEntity {
     @Column
     private String name;
     @Column
@@ -25,10 +23,6 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {

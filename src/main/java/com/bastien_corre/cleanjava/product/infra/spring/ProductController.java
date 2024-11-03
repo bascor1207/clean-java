@@ -9,10 +9,12 @@ import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
 import com.bastien_corre.cleanjava.product.domain.viewmodel.ProductViewModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/products")
+@Transactional
 public class ProductController {
     private final Pipeline pipeline;
 

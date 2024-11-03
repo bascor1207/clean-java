@@ -1,4 +1,4 @@
-package com.bastien_corre.cleanjava.core.infra.spring.domain.exceptions;
+package com.bastien_corre.cleanjava.core.domain.exceptions;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String entity, String key) {

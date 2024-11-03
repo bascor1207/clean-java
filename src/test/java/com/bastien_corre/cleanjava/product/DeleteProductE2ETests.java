@@ -3,32 +3,28 @@ package com.bastien_corre.cleanjava.product;
 import com.bastien_corre.cleanjava.PostgreSQLContainerTests;
 import com.bastien_corre.cleanjava.product.application.ports.ProductRepository;
 import com.bastien_corre.cleanjava.product.domain.model.Product;
-import com.bastien_corre.cleanjava.product.infra.spring.ChangeProductDescriptionDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @Import(PostgreSQLContainerTests.class)
+@Transactional
 public class DeleteProductE2ETests {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     void should_delete_product_given_the_id() throws Exception {

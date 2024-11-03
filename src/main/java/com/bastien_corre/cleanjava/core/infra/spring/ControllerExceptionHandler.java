@@ -1,6 +1,6 @@
-package com.bastien_corre.cleanjava.product.infra.spring;
+package com.bastien_corre.cleanjava.core.infra.spring;
 
-import com.bastien_corre.cleanjava.core.infra.spring.domain.exceptions.NotFoundException;
+import com.bastien_corre.cleanjava.core.domain.exceptions.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

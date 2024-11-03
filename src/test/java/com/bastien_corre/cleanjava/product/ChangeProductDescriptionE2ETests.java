@@ -3,7 +3,6 @@ package com.bastien_corre.cleanjava.product;
 import com.bastien_corre.cleanjava.PostgreSQLContainerTests;
 import com.bastien_corre.cleanjava.product.application.ports.ProductRepository;
 import com.bastien_corre.cleanjava.product.domain.model.Product;
-import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
 import com.bastien_corre.cleanjava.product.infra.spring.ChangeProductDescriptionDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,12 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @Import(PostgreSQLContainerTests.class)
+@Transactional
 public class ChangeProductDescriptionE2ETests {
     @Autowired
     private MockMvc mockMvc;

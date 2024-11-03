@@ -1,29 +1,17 @@
 package com.bastien_corre.cleanjava.product.infra.adapters.jpa;
 
+import com.bastien_corre.cleanjava.core.infra.adapters.jpa.SQLBaseRepository;
 import com.bastien_corre.cleanjava.product.application.ports.ProductRepository;
 import com.bastien_corre.cleanjava.product.domain.model.Product;
+import jakarta.persistence.EntityManager;
 
-import java.util.Optional;
-
-public class SQLProductRepository implements ProductRepository {
-    private final SQLProductDataAccessor sqlProductDataAccessor;
-
-    public SQLProductRepository(SQLProductDataAccessor sqlProductDataAccessor) {
-        this.sqlProductDataAccessor = sqlProductDataAccessor;
+public class SQLProductRepository extends SQLBaseRepository<Product> implements ProductRepository {
+    public SQLProductRepository(EntityManager entityManager) {
+        super(entityManager);
     }
 
     @Override
-    public Optional<Product> findById(String id) {
-       return this.sqlProductDataAccessor.findById(id);
-    }
-
-    @Override
-    public void save(Product product) {
-        this.sqlProductDataAccessor.save(product);
-    }
-
-    @Override
-    public void delete(Product product) {
-        this.sqlProductDataAccessor.delete(product);
+    public Class<Product> getEntityClass() {
+        return Product.class;
     }
 }

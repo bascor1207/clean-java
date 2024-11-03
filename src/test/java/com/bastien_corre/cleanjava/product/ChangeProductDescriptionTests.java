@@ -1,6 +1,6 @@
 package com.bastien_corre.cleanjava.product;
 
-import com.bastien_corre.cleanjava.core.infra.spring.domain.exceptions.NotFoundException;
+import com.bastien_corre.cleanjava.core.domain.exceptions.NotFoundException;
 import com.bastien_corre.cleanjava.product.application.usecases.ChangeProductDescriptionCommand;
 import com.bastien_corre.cleanjava.product.application.usecases.ChangeProductDescriptionCommandHandler;
 import com.bastien_corre.cleanjava.product.domain.model.Product;
