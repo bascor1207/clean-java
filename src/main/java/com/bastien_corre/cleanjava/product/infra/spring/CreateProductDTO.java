@@ -3,11 +3,11 @@ package com.bastien_corre.cleanjava.product.infra.spring;
 public class CreateProductDTO {
     private String productName;
     private String productDescription;
-    private Integer productPrice;
+    private Float productPrice;
 
     public CreateProductDTO() {}
 
-    public CreateProductDTO(String productName, String productDescription, Integer productPrice) {
+    public CreateProductDTO(String productName, String productDescription, Float productPrice) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
@@ -21,7 +21,7 @@ public class CreateProductDTO {
         return productDescription;
     }
 
-    public Integer getProductPrice() {
+    public Float getProductPrice() {
         return productPrice;
     }
 
@@ -33,7 +33,7 @@ public class CreateProductDTO {
         this.productDescription = productDescription;
     }
 
-    public void setProductPrice(Integer productPrice) {
+    public void setProductPrice(Float productPrice) {
         this.productPrice = productPrice;
     }
 }

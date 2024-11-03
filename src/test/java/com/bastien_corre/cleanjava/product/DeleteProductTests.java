@@ -18,7 +18,7 @@ public class DeleteProductTests {
 
     @Test
     public void should_delete_the_product() {
-        var product = new Product("123", "Rouget", "Notes intenses de bois", 100);
+        var product = new Product("123", "Rouget", "Notes intenses de bois", 100F);
         productRepository.save(product);
 
         var command = new DeleteProductCommand(product.getId());

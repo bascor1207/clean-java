@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     @PatchMapping(value = "/{id}/description")
-    public ResponseEntity<IdResponse> changeProductDescription(@PathVariable String id, @RequestBody ChangeProductDescriptionDTO changeProductDescriptionDTO) {
+    public ResponseEntity<Void> changeProductDescription(@PathVariable String id, @RequestBody ChangeProductDescriptionDTO changeProductDescriptionDTO) {
         this.pipeline.send(new ChangeProductDescriptionCommand(id, changeProductDescriptionDTO.getDescription()));
 
         return new ResponseEntity<>(HttpStatus.OK);

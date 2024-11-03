@@ -34,7 +34,7 @@ public class ChangeProductDescriptionE2ETests {
 
     @Test
     void should_change_product_description() throws Exception {
-        var existingProduct = new Product("123", "Rouget", "Notes intenses de bois", 100);
+        var existingProduct = new Product("123", "Rouget", "Notes intenses de bois", 100F);
 
         productRepository.save(existingProduct);
         var dto = new ChangeProductDescriptionDTO("Notes fruitées, une intensité troublante de fraise des bois");

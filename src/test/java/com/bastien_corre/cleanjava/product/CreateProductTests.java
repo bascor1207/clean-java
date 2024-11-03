@@ -13,10 +13,10 @@ public class CreateProductTests {
         var repository = new InMemoryProductRepository();
         var useCase = new CreateProductCommandHandler(repository);
 
-        var command = new CreateProductCommand("Rouget", "Notes intenses de bois", 100);
+        var command = new CreateProductCommand("Rouget", "Notes intenses de bois", 100F);
         var idResponse = useCase.handle(command);
 
-        var expectedProduct = new Product("id", "Rouget", "Notes intenses de bois", 100);
+        var expectedProduct = new Product("id", "Rouget", "Notes intenses de bois", 100F);
         Product actualProduct = repository.findById(idResponse.getId()).get();
         Assertions.assertEquals(expectedProduct.getName(), actualProduct.getName());
     }

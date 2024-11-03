@@ -1,4 +1,4 @@
-package com.bastien_corre.cleanjava.product;
+package com.bastien_corre.cleanjava.core.infra;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

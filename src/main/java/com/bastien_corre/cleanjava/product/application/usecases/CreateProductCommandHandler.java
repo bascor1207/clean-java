@@ -18,9 +18,9 @@ public class CreateProductCommandHandler implements Command.Handler<CreateProduc
     public IdResponse handle(CreateProductCommand command) {
         var product = new Product(
                 UUID.randomUUID().toString(),
-                command.getProductName(),
-                command.getProductDescription(),
-                command.getProductPrice()
+                command.productName(),
+                command.productDescription(),
+                command.productPrice()
         );
         this.productRepository.save(product);
 

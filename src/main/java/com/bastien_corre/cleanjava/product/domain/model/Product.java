@@ -14,11 +14,11 @@ public class Product extends BaseEntity {
     @Column
     private String description;
     @Column
-    private Integer price;
+    private Float price;
 
     public Product() {}
 
-    public Product(String id, String name, String description, Integer price) {
+    public Product(String id, String name, String description, Float price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,7 +33,7 @@ public class Product extends BaseEntity {
         return description;
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 

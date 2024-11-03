@@ -4,11 +4,11 @@ public class ProductViewModel {
     private String id;
     private String name;
     private String description;
-    private Integer price;
+    private Float price;
 
     public ProductViewModel() {}
 
-    public ProductViewModel(String id, String name, String description, Integer price) {
+    public ProductViewModel(String id, String name, String description, Float price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,7 +27,7 @@ public class ProductViewModel {
         return description;
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 }

@@ -18,7 +18,7 @@ public class ChangeProductDescriptionTests {
 
     @Test
     public void should_change_product_description() {
-        var product = new Product("123", "Rouget", "Notes intenses de bois", 100);
+        var product = new Product("123", "Rouget", "Notes intenses de bois", 100F);
         productRepository.save(product);
 
         var command = new ChangeProductDescriptionCommand(product.getId(), "Notes fruitées, une intensité troublante de fraise des bois");

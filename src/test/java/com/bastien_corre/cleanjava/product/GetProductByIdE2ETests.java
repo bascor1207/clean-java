@@ -33,7 +33,7 @@ public class GetProductByIdE2ETests {
 
     @Test
     void should_get_the_product_by_its_id() throws Exception {
-        var existingProduct = new Product("123", "Rouget", "Notes intenses de bois", 100);
+        var existingProduct = new Product("123", "Rouget", "Notes intenses de bois", 100F);
         productRepository.save(existingProduct);
 
        var result = mockMvc
