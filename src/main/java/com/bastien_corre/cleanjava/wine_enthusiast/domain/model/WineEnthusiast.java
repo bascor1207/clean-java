@@ -15,10 +15,12 @@ import java.util.List;
 @Entity
 @Table(name = "wine_enthusiasts")
 public class WineEnthusiast extends BaseEntity {
-    @Column
+    @Column(name = "first_name")
     private String firstName;
-    @Column
+
+    @Column(name = "last_name")
     private String lastName;
+
     @ElementCollection
     private List<String> preferredWines;
 

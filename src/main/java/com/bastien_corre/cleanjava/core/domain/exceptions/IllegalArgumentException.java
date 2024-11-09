@@ -10,4 +10,8 @@ public class IllegalArgumentException extends RuntimeException {
                         valueType)
         );
     }
+
+    public IllegalArgumentException(String simpleMessage) {
+        super(simpleMessage);
+    }
 }

@@ -4,6 +4,7 @@ import an.awesome.pipelinr.Command;
 import com.bastien_corre.cleanjava.auth.application.ports.UserRepository;
 import com.bastien_corre.cleanjava.auth.application.services.password_hasher.PasswordHasher;
 import com.bastien_corre.cleanjava.auth.domain.model.User;
+import com.bastien_corre.cleanjava.core.domain.exceptions.IllegalArgumentException;
 import com.bastien_corre.cleanjava.product.domain.viewmodel.IdResponse;
 
 import java.util.UUID;
@@ -19,6 +20,12 @@ public class RegisterCommandHandler implements Command.Handler<RegisterCommand, 
 
     @Override
     public IdResponse handle(RegisterCommand registerCommand) {
+        boolean isEmailAvailable = userRepository.isEmailAvailable(registerCommand.emailAddress());
+
+        if (!isEmailAvailable) {
+            throw new IllegalArgumentException("Email address is already in use");
+        }
+
         var user = new User(
                 UUID.randomUUID().toString(),
                 registerCommand.emailAddress(),

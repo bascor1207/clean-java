@@ -8,4 +8,5 @@ public interface BaseRepository<T extends BaseEntity> {
     public Optional<T> findById(String id);
     public void save(T entity);
     public void delete(T entity);
+    public void clear();
 }
